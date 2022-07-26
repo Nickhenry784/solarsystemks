@@ -1,37 +1,37 @@
 export const items = [
   {
-    sku: 'com.amazon.hammerlmao_100',
+    sku: 'com.amazon.clipperls_1x',
     value: 100,
   },
   {
-    sku: 'com.amazon.hammerlmao_200',
+    sku: 'com.amazon.clipperls_2x',
     value: 200,
   },
   {
-    sku: 'com.amazon.hammerlmao_300',
+    sku: 'com.amazon.clipperls_3x',
     value: 300,
   },
   {
-    sku: 'com.amazon.hammerlmao_400',
+    sku: 'com.amazon.clipperls_4x',
     value: 400,
   },
 ];
 
 export const subs = [
   {
-    sku: 'com.amazon.weekly_hammerlmao_1',
+    sku: 'com.amazon.weekly_clipperls_100',
     value: 100,
   },
   {
-    sku: 'com.amazon.weekly_hammerlmao_2',
+    sku: 'com.amazon.weekly_clipperls_200',
     value: 200,
   },
   {
-    sku: 'com.amazon.monthly_hammerlmao_1',
+    sku: 'com.amazon.monthly_clipperls_400',
     value: 400,
   },
   {
-    sku: 'com.amazon.monthly_hammerlmao_2',
+    sku: 'com.amazon.monthly_clipperls_700',
     value: 700,
   },
 ];

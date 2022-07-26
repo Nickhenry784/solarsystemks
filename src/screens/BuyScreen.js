@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   labelText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
+    color: 'white',
   },
   item: {
     margin: 5,

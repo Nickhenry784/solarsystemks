@@ -50,7 +50,7 @@ const HomeScreen = () => {
       </View>
       <View style={appStyle.bottomView}>
         <TouchableOpacity onPress={() => onClickStartButton()}>
-          <Image source={images.start} style={appStyle.itemView} />
+          <Image source={images.playy} style={appStyle.itemView} />
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -116,9 +116,9 @@ export const appStyle = StyleSheet.create({
     alignItems: 'center',
   },
   turnText: {
-    fontSize: windowWidth > 640 ? 30 : 25,
+    fontSize: 30,
     fontWeight: 'bold',
-    color: 'white',
+    color: 'black',
   },
   buyImage: {
     width: windowWidth * 0.1,

@@ -29,7 +29,7 @@ const dataBg = [
   {id: 10, bg: images.img10},
 ]
 
-var whoosh = new Sound('tiengbua.mp3', Sound.MAIN_BUNDLE, (error) => {
+var whoosh = new Sound('tieng.mp3', Sound.MAIN_BUNDLE, (error) => {
   if (error) {
     console.log('failed to load the sound', error);
     return;
@@ -47,23 +47,21 @@ whoosh.setNumberOfLoops(-1);
 
 const PlayScreen = ({navigation, route}) => {
 
-  const [deg, setDeg] = useState(30);
+  const [start, setStart] = useState(false);
 
   useEffect(() => {
     const timeInval = setInterval(() => {
-      if(deg !== -30){
-        setDeg(deg - 30);
-      }
-      if(deg === -30){
+      if(start === true){
         whoosh.play();
-        setDeg(30);
+      }else{
+        whoosh.stop();
       }
     }, 100);
     
     return () => {
       clearInterval(timeInval);
     }
-  },[deg]);
+  },[start]);
 
   const onClickHomeBtn = () => {
     navigation.goBack();
@@ -74,16 +72,14 @@ const PlayScreen = ({navigation, route}) => {
     <ImageBackground style={appStyle.homeView} source={images.bg1}>
       <View style={appStyle.closeView}>
         <TouchableOpacity onPress={onClickHomeBtn}>
-          <Image source={images.home} style={appStyle.btnClose} />
+          <Image source={images.home} style={appStyle.btnClose}/>
         </TouchableOpacity>
       </View>
-      <Animated.Image source={images.bua} style={[appStyle.buaImage,{
-        transform: [
-          {
-            rotate: `${deg} deg`,
-          }
-        ]
-      }]}/>
+      <ImageBackground source={images.maycat} style={[appStyle.buaImage]}>
+        <TouchableOpacity onPress={() => setStart(!start)}>
+          <Image source={images.buttonon} style={appStyle.btnClose} />
+        </TouchableOpacity>
+      </ImageBackground>
     </ImageBackground>
   );
 };
@@ -101,6 +97,12 @@ export const appStyle = StyleSheet.create({
     position: 'absolute',
     top: '3%',
     left: '3%',
+    width: windowWidth * 0.15,
+    height: windowWidth * 0.15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: windowWidth * 0.07,
+    backgroundColor: 'white',
   },
   btnClose: {
     width: windowWidth * 0.1,
@@ -109,8 +111,10 @@ export const appStyle = StyleSheet.create({
   },
   buaImage: {
     width: windowWidth * 0.4,
-    height: windowHeight * 0.6,
+    height: windowHeight * 0.7,
     resizeMode: 'contain',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   bottomView: {
     width: windowWidth,
