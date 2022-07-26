@@ -1,4 +1,4 @@
-package com.amazon.solarsystemks;
+package com.amazon.hammerhammerlmao;
 
 import com.facebook.react.ReactActivity;
 
