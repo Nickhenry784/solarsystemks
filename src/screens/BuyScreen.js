@@ -120,7 +120,6 @@ export default function App() {
   };
 
   return (
-    <ImageBackground style={styles.homeView} source={images.bgstart}>
     <ScrollView
       style={styles.bg}
       contentContainerStyle={{paddingHorizontal: 20, paddingTop: 10}}>
@@ -158,7 +157,6 @@ export default function App() {
       )}
 
     </ScrollView>
-    </ImageBackground>
   );
 }
 
@@ -185,7 +183,7 @@ const styles = StyleSheet.create({
   labelText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'white',
+    color: 'black',
   },
   item: {
     margin: 5,

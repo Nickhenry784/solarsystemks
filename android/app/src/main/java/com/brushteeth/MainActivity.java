@@ -1,4 +1,4 @@
-package com.amazon.solarsystemks;
+package com.amazon.foodwallmsa;
 
 import com.facebook.react.ReactActivity;
 

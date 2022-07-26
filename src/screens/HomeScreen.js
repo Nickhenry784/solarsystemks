@@ -48,7 +48,6 @@ const HomeScreen = () => {
           </View>
         </TouchableOpacity>
       </View>
-      <Image source={images.textstart} style={appStyle.brokenImage} />
       <View style={appStyle.bottomView}>
         <TouchableOpacity onPress={() => onClickStartButton()}>
           <Image source={images.start} style={appStyle.itemView} />
@@ -73,11 +72,6 @@ export const appStyle = StyleSheet.create({
     height: windowHeight * 0.4,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  labelText: {
-    fontSize:30,
-    fontWeight: 'bold',
-    color: '#d8b58a',
   },
   closeView: {
     position: 'absolute',
@@ -107,7 +101,7 @@ export const appStyle = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   turnView: {
     flexDirection: 'row',
@@ -117,7 +111,7 @@ export const appStyle = StyleSheet.create({
     alignItems: 'center',
   },
   turnText: {
-    fontSize: windowWidth > 640 ? 30 : 25,
+    fontSize: 30 ,
     fontWeight: 'bold',
     color: 'white',
   },
