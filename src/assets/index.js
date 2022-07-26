@@ -1,9 +1,10 @@
 export const images = {
-  playy: require('./images/playy.png'),
+  play: require('./images/play.png'),
   turn: require('./images/turn.png'),
-  maycat: require('./images/maycat.png'),
-  bg1: require('./images/bg1.png'),
-  buttonon: require('./images/buttonon.png'),
-  bgstart: require('./images/bgstart.png'),
-  home: require('./images/home.png'),
+  gay: require('./images/gay.png'),
+  bg: require('./images/bg.png'),
+  dog1: require('./images/dog1.png'),
+  dog2: require('./images/dog2.png'),
+  dog2: require('./images/dog2.png'),
+  back: require('./images/back.png'),
 }

@@ -28,18 +28,18 @@ const HomeScreen = () => {
   }
 
   const onClickStartButton = () => {
-    if(points.value <= 0){
-      Alert.alert("Please buy more turn!");
-      return false;
-    }
-    dispatch(decrement());
+    // if(points.value <= 0){
+    //   Alert.alert("Please buy more turn!");
+    //   return false;
+    // }
+    // dispatch(decrement());
     navigation.navigate("Play");
   }
 
 
 
   return (
-    <ImageBackground style={appStyle.homeView} source={images.bgstart}>
+    <ImageBackground style={appStyle.homeView} source={images.bg}>
       <View style={appStyle.appBar}>
         <TouchableOpacity onPress={onClickTurnButton}>
           <View style={appStyle.turnView}>
@@ -48,9 +48,13 @@ const HomeScreen = () => {
           </View>
         </TouchableOpacity>
       </View>
+      <View style={appStyle.centerView}>
+        <Image source={images.gay} style={appStyle.itemView} />
+        <Image source={images.dog2} style={appStyle.itemImage} />
+      </View>
       <View style={appStyle.bottomView}>
         <TouchableOpacity onPress={() => onClickStartButton()}>
-          <Image source={images.playy} style={appStyle.itemView} />
+          <Image source={images.play} style={appStyle.okBtn} />
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -83,6 +87,13 @@ export const appStyle = StyleSheet.create({
     top: '5%',
     right: '0%',
   },
+  centerView: {
+    width: '80%',
+    height: windowHeight * 0.3,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   popupView: {
     width: windowWidth,
     height: windowHeight,
@@ -96,17 +107,17 @@ export const appStyle = StyleSheet.create({
     bottom: '0%',
   },
   okBtn: {
-    width: windowWidth * 0.3,
-    height: windowWidth * 0.1,
+    width: windowWidth * 0.5,
+    height: windowHeight * 0.2,
     resizeMode: 'contain',
   },
   appBar: {
-    flex: 0.1,
+    height: windowHeight * 0.1,
     paddingHorizontal: 20,
     width: '100%',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   turnView: {
     flexDirection: 'row',
@@ -131,8 +142,13 @@ export const appStyle = StyleSheet.create({
     resizeMode: 'contain',
   },
   itemView: {
+    width: windowWidth * 0.2,
+    height: windowWidth * 0.6,
+    resizeMode: 'contain',
+  },
+  itemImage: {
     width: windowWidth * 0.4,
-    height: windowWidth * 0.2,
+    height: windowWidth * 0.7,
     resizeMode: 'contain',
   },
   text: {
@@ -141,7 +157,7 @@ export const appStyle = StyleSheet.create({
     color: 'white',
   },
   bottomView: {
-    flex: 0.3,
+    height: windowHeight * 0.2,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',

@@ -1,4 +1,4 @@
-package com.amazon.hairclipperls;
+package com.amazon.bonkshibamas;
 
 import com.facebook.react.ReactActivity;
 

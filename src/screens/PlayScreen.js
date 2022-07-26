@@ -16,70 +16,68 @@ const windowHeight = Dimensions.get('screen').height;
 
 Sound.setCategory('Playback');
 
-const dataBg = [
-  {id: 1, bg: images.img1},
-  {id: 2, bg: images.img2},
-  {id: 3, bg: images.img3},
-  {id: 4, bg: images.img4},
-  {id: 5, bg: images.img5},
-  {id: 6, bg: images.img6},
-  {id: 7, bg: images.img7},
-  {id: 8, bg: images.img8},
-  {id: 9, bg: images.img9},
-  {id: 10, bg: images.img10},
-]
 
-var whoosh = new Sound('tieng.mp3', Sound.MAIN_BUNDLE, (error) => {
+var whoosh = new Sound('voice.mp3', Sound.MAIN_BUNDLE, (error) => {
   if (error) {
     console.log('failed to load the sound', error);
     return;
   }
+
 });
 
 // Reduce the volume by half
 whoosh.setVolume(1);
 
-// Position the sound to the full right in a stereo field
-whoosh.setPan(1);
-
-// Loop indefinitely until stop() is called
-whoosh.setNumberOfLoops(-1);
 
 const PlayScreen = ({navigation, route}) => {
 
   const [start, setStart] = useState(false);
+  const [deg, setDeg] = useState(0);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const timeInval = setInterval(() => {
-      if(start === true){
+      if(start === true && deg !== 30){
         whoosh.play();
-      }else{
-        whoosh.stop();
+        setDeg(30);
+        setIndex(1);
       }
-    }, 100);
+      if(start === true && deg === 30){
+        setStart(false);
+        setTimeout(() => {
+          setDeg(0);
+          setIndex(0);
+          whoosh.stop();
+        }, 2000);
+      }
+    }, 500);
     
     return () => {
       clearInterval(timeInval);
     }
-  },[start]);
+  },[start, deg]);
 
   const onClickHomeBtn = () => {
     navigation.goBack();
-    whoosh.release();
   }
 
   return (
-    <ImageBackground style={appStyle.homeView} source={images.bg1}>
+    <ImageBackground style={appStyle.homeView} source={images.bg}>
       <View style={appStyle.closeView}>
         <TouchableOpacity onPress={onClickHomeBtn}>
-          <Image source={images.home} style={appStyle.btnClose}/>
+          <Image source={images.back} style={appStyle.btnClose}/>
         </TouchableOpacity>
       </View>
-      <ImageBackground source={images.maycat} style={[appStyle.buaImage]}>
-        <TouchableOpacity onPress={() => setStart(!start)}>
-          <Image source={images.buttonon} style={appStyle.btnClose} />
-        </TouchableOpacity>
-      </ImageBackground>
+      <TouchableOpacity onPress={() => setStart(true)} style={appStyle.btnPlay}>
+        <View style={appStyle.playView}>
+          <Animated.Image source={images.gay} style={[appStyle.gayImage,{
+            transform: [{
+              rotate: `${deg} deg`,
+            }]
+          }]} />
+          <Image source={index === 0 ? images.dog2 : images.dog1} style={appStyle.dogImage} />
+        </View>
+      </TouchableOpacity>
     </ImageBackground>
   );
 };
@@ -97,12 +95,23 @@ export const appStyle = StyleSheet.create({
     position: 'absolute',
     top: '3%',
     left: '3%',
-    width: windowWidth * 0.15,
-    height: windowWidth * 0.15,
+  },
+  gayImage: {
+    width: windowWidth * 0.2,
+    height: windowHeight * 0.5,
+    resizeMode: 'contain',
+  },
+  dogImage: {
+    width: windowWidth * 0.5,
+    height: windowHeight * 0.7,
+    resizeMode: 'contain',
+  },
+  playView: {
+    width: '80%',
+    height: windowHeight * 0.6,
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: windowWidth * 0.07,
-    backgroundColor: 'white',
   },
   btnClose: {
     width: windowWidth * 0.1,
@@ -116,12 +125,15 @@ export const appStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  bottomView: {
-    width: windowWidth,
-    height: windowHeight * 0.2,
+  btnPlay: {
+    width: '100%',
+    height: windowHeight * 0.8,
+    bottom: '0%',
+    left: '0%',
+    right: '0%',
+    marginTop: windowHeight * 0.15,
     alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
 
