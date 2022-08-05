@@ -1,4 +1,4 @@
-package com.amazon.foodwallmsa;
+package com.amazon.beautifullhairmn;
 
 import com.facebook.react.ReactActivity;
 
