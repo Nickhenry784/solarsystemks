@@ -17,7 +17,7 @@ const windowHeight = Dimensions.get('screen').height;
 Sound.setCategory('Playback');
 
 
-var whoosh = new Sound('voice.mp3', Sound.MAIN_BUNDLE, (error) => {
+var whoosh = new Sound('nhacnen.mp3', Sound.MAIN_BUNDLE, (error) => {
   if (error) {
     console.log('failed to load the sound', error);
     return;
@@ -25,59 +25,66 @@ var whoosh = new Sound('voice.mp3', Sound.MAIN_BUNDLE, (error) => {
 
 });
 
+var chuong = new Sound('tiengchuong.mp3', Sound.MAIN_BUNDLE, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+
+});
+
+chuong.setVolume(1);
+
+var tiengmo = new Sound('tiengmo.mp3', Sound.MAIN_BUNDLE, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+
+});
+
+tiengmo.setVolume(1);
+
 // Reduce the volume by half
 whoosh.setVolume(1);
 
 
 const PlayScreen = ({navigation, route}) => {
 
-  const [start, setStart] = useState(false);
-  const [deg, setDeg] = useState(0);
-  const [index, setIndex] = useState(0);
-
   useEffect(() => {
-    const timeInval = setInterval(() => {
-      if(start === true && deg !== 30){
-        whoosh.play();
-        setDeg(30);
-        setIndex(1);
-      }
-      if(start === true && deg === 30){
-        setStart(false);
-        setTimeout(() => {
-          setDeg(0);
-          setIndex(0);
-          whoosh.stop();
-        }, 2000);
-      }
-    }, 500);
-    
-    return () => {
-      clearInterval(timeInval);
-    }
-  },[start, deg]);
+    whoosh.play();
+    whoosh.setNumberOfLoops(-1);
+  },[]);
 
   const onClickHomeBtn = () => {
     navigation.goBack();
+    whoosh.stop();
   }
 
+  const onClickChuongBtn = () => {
+    chuong.stop();
+    chuong.play();
+  }
+
+  const onClickMoBtn = () => {
+    tiengmo.stop();
+    tiengmo.play();
+  }
   return (
-    <ImageBackground style={appStyle.homeView} source={images.bg}>
+    <ImageBackground style={appStyle.homeView} source={images.bg1}>
       <View style={appStyle.closeView}>
         <TouchableOpacity onPress={onClickHomeBtn}>
-          <Image source={images.back} style={appStyle.btnClose}/>
+          <Image source={images.home} style={appStyle.btnClose}/>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => setStart(true)} style={appStyle.btnPlay}>
-        <View style={appStyle.playView}>
-          <Animated.Image source={images.gay} style={[appStyle.gayImage,{
-            transform: [{
-              rotate: `${deg} deg`,
-            }]
-          }]} />
-          <Image source={index === 0 ? images.dog2 : images.dog1} style={appStyle.dogImage} />
-        </View>
-      </TouchableOpacity>
+      <View style={appStyle.bottomView}>
+        <TouchableOpacity onPress={() => onClickChuongBtn()} style={appStyle.btnPlay}>
+          <Image source={images.chuong} style={appStyle.buaImage} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => onClickMoBtn()} style={appStyle.btnPlay}>
+          <Image source={images.mo} style={appStyle.buaImage} />
+        </TouchableOpacity>
+      </View>
     </ImageBackground>
   );
 };
@@ -113,27 +120,24 @@ export const appStyle = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  bottomView: {
+    width: windowWidth * 0.9,
+    height: windowHeight * 0.2,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    position: 'absolute',
+    bottom: '0%',
+  },
   btnClose: {
     width: windowWidth * 0.1,
     height: windowHeight * 0.1,
     resizeMode: 'contain',
   },
   buaImage: {
-    width: windowWidth * 0.4,
-    height: windowHeight * 0.7,
+    width: windowWidth * 0.3,
+    height: windowHeight * 0.3,
     resizeMode: 'contain',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  btnPlay: {
-    width: '100%',
-    height: windowHeight * 0.8,
-    bottom: '0%',
-    left: '0%',
-    right: '0%',
-    marginTop: windowHeight * 0.15,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 

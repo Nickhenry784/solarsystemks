@@ -1,4 +1,4 @@
-package com.amazon.bonkshibamas;
+package com.amazon.thestillqa;
 
 import com.facebook.react.ReactActivity;
 
