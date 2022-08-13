@@ -28,18 +28,18 @@ const HomeScreen = () => {
   }
 
   const onClickStartButton = () => {
-    // if(points.value <= 0){
-    //   Alert.alert("Please buy more turn!");
-    //   return false;
-    // }
-    // dispatch(decrement());
+    if(points.value <= 0){
+      Alert.alert("Please buy more turn!");
+      return false;
+    }
+    dispatch(decrement());
     navigation.navigate("Play");
   }
 
 
 
   return (
-    <ImageBackground style={appStyle.homeView} source={images.bg}>
+    <ImageBackground style={appStyle.homeView} source={images.bgstart}>
       <View style={appStyle.appBar}>
         <TouchableOpacity onPress={onClickTurnButton}>
           <View style={appStyle.turnView}>
@@ -47,10 +47,6 @@ const HomeScreen = () => {
             <Text style={appStyle.turnText}>{points.value}</Text>
           </View>
         </TouchableOpacity>
-      </View>
-      <View style={appStyle.centerView}>
-        <Image source={images.gay} style={appStyle.itemView} />
-        <Image source={images.dog2} style={appStyle.itemImage} />
       </View>
       <View style={appStyle.bottomView}>
         <TouchableOpacity onPress={() => onClickStartButton()}>

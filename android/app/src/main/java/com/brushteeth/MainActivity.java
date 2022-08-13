@@ -1,4 +1,4 @@
-package com.amazon.bonkshibamas;
+package com.amazon.dogeamz;
 
 import com.facebook.react.ReactActivity;
 
